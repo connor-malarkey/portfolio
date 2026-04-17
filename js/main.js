@@ -370,36 +370,68 @@
     var nextBtn = document.getElementById('toursCarouselNext');
     var dotsEl = document.getElementById('toursCarouselDots');
     if (!track || !prevBtn || !nextBtn) return;
-    var totalPages = 3;
+
+    var MOBILE_BP = 600;
+    var isMobile = window.innerWidth <= MOBILE_BP;
+    var totalPages = isMobile ? 9 : 3;
+    var stepPct = isMobile ? -11.111 : -33.333;
     var currentPage = 0;
-    function goTo(page) {
-      currentPage = Math.max(0, Math.min(page, totalPages - 1));
-      track.style.transform = 'translateX(' + (currentPage * -33.333) + '%)';
-      if (dotsEl) {
-        var dots = dotsEl.querySelectorAll('.gallery-carousel-dot');
-        dots.forEach(function (d, i) {
-          d.classList.toggle('is-active', i === currentPage);
-        });
-      }
-    }
-    if (dotsEl) {
+
+    function buildDots() {
+      if (!dotsEl) return;
+      dotsEl.innerHTML = '';
       for (var i = 0; i < totalPages; i++) {
         var dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'gallery-carousel-dot' + (i === 0 ? ' is-active' : '');
         dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.setAttribute('data-page', String(i));
         dot.addEventListener('click', function () {
           goTo(Number(this.getAttribute('data-page')));
         });
-        dot.setAttribute('data-page', String(i));
         dotsEl.appendChild(dot);
       }
     }
-    prevBtn.addEventListener('click', function () {
-      goTo(currentPage - 1);
-    });
-    nextBtn.addEventListener('click', function () {
-      goTo(currentPage + 1);
+
+    function goTo(page) {
+      currentPage = Math.max(0, Math.min(page, totalPages - 1));
+      track.style.transform = 'translateX(' + (currentPage * stepPct) + '%)';
+      if (dotsEl) {
+        dotsEl.querySelectorAll('.gallery-carousel-dot').forEach(function (d, i) {
+          d.classList.toggle('is-active', i === currentPage);
+        });
+      }
+    }
+
+    buildDots();
+    prevBtn.addEventListener('click', function () { goTo(currentPage - 1); });
+    nextBtn.addEventListener('click', function () { goTo(currentPage + 1); });
+
+    // Touch swipe
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function (e) {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? currentPage + 1 : currentPage - 1);
+    }, { passive: true });
+
+    // Responsive recalc on resize
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        var newMobile = window.innerWidth <= MOBILE_BP;
+        if (newMobile !== isMobile) {
+          isMobile = newMobile;
+          totalPages = isMobile ? 9 : 3;
+          stepPct = isMobile ? -11.111 : -33.333;
+          currentPage = 0;
+          track.style.transform = 'translateX(0%)';
+          buildDots();
+        }
+      }, 150);
     });
   })();
 

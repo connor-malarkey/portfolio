@@ -1877,7 +1877,10 @@ button.nav-overlay-link {
   .bento-card--globe,
   .bento-card--cta,
   .bento-card--product { grid-column: 1; grid-row: auto; }
-  .bento-card-inner { min-height: 160px; padding: var(--space-lg); }
+  .bento-card-inner { min-height: 190px; padding: var(--space-lg); }
+  .bento-map { width: 100px; height: 72px; top: 32%; }
+  .bento-360 { width: 68px; height: 68px; top: 40%; }
+  .bento-floorplan { width: 62px; height: 46px; top: 32%; }
 }
 
 /* Fade out decorative bento icons when viewport is too short to avoid overlap */
@@ -2113,6 +2116,11 @@ button.nav-overlay-link {
 }
 .gallery-carousel-card + .gallery-carousel-card {
   padding-left: var(--space-md);
+}
+/* Mobile: 1 card visible — track expands to 9× viewport, gaps removed */
+@media (max-width: 600px) {
+  .gallery-carousel-track { width: 900%; }
+  .gallery-carousel-card + .gallery-carousel-card { padding-left: 0; }
 }
 .gallery-carousel-card .gallery-card-thumb-wrap {
   border-radius: var(--radius-sm);
