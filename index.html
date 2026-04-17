@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Connor Malarkey — Senior Manager at Visiting Media & Systems Builder. Production workflow automation, AI-driven tooling, 360 photography systems." />
+  <title>Connor Malarkey — Senior Manager at Visiting Media & Systems Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Full-page starfield (depth layers) -->
+  <canvas id="pageCanvas" aria-hidden="true"></canvas>
+  <!-- Navigation — Centered floating glassmorphism dock -->
+  <header class="nav nav--dock" id="nav" role="banner">
+    <a href="#hero" class="nav-brand nav-brand--corner" aria-label="Home">
+      <svg class="nav-brand-icon nav-brand-icon--gradient" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#globeGrad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <defs>
+          <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="userSpaceOnUse" gradientTransform="rotate(0 12 12)">
+            <animateTransform attributeName="gradientTransform" type="rotate" from="0 12 12" to="360 12 12" dur="10s" repeatCount="indefinite"/>
+            <stop offset="0%" stop-color="#5b9bd5"/>
+            <stop offset="33%" stop-color="#4db8a8"/>
+            <stop offset="66%" stop-color="#9b7bb8"/>
+            <stop offset="100%" stop-color="#5b9bd5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    </a>
+    <div class="nav-dock">
+      <nav class="nav-links" role="navigation">
+        <a href="#hero" class="nav-link" data-section="hero">Home</a>
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#gallery" class="nav-link" data-section="gallery">Gallery</a>
+        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#about" class="nav-link" data-section="about">About</a>
+      </nav>
+      <button type="button" class="nav-dock-cta" id="navContactBtn" aria-label="Open contact form">Contact Me</button>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-overlay">
+      <div class="nav-overlay-inner">
+        <a href="#hero" class="nav-overlay-link" data-section="hero">Home</a>
+        <a href="#projects" class="nav-overlay-link" data-section="projects">Projects</a>
+        <a href="#gallery" class="nav-overlay-link" data-section="gallery">Gallery</a>
+        <a href="#experience" class="nav-overlay-link" data-section="experience">Experience</a>
+        <a href="#about" class="nav-overlay-link" data-section="about">About</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero — Space-themed landing -->
+    <section class="hero hero--splash" id="hero" aria-label="Introduction">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-starfield" id="heroStarfield"></div>
+      </div>
+      <div class="hero-content hero-content--splash" id="heroContent">
+        <h1 class="hero-greeting hero-greeting--lead" id="heroHeadline">Hello, I'm <span class="hero-greeting-name">Connor Malarkey</span>.</h1>
+        <p class="hero-tagline">I lead production teams and build systems that deliver <em class="hero-headline-accent">real impact</em>.</p>
+        <div class="hero-gallery hero-gallery--bento">
+          <figure class="hero-gallery-item hero-gallery-item--1">
+            <video autoplay muted loop playsinline preload="auto" poster="media/Connor Malarkey Square headshot.jpg">
+              <source src="media/comp-video.mp4" type="video/mp4" />
+            </video>
+          </figure>
+          <figure class="hero-gallery-item hero-gallery-item--2">
+            <img src="media/Photo 3.png" alt="Production work" width="200" height="200" loading="lazy" />
+          </figure>
+          <figure class="hero-gallery-item hero-gallery-item--3">
+            <img src="media/Photo 5.png" alt="Production work" width="200" height="200" loading="lazy" />
+          </figure>
+          <figure class="hero-gallery-item hero-gallery-item--4">
+            <img src="media/Photo 12.jpeg" alt="Production work" width="200" height="200" loading="lazy" />
+          </figure>
+          <figure class="hero-gallery-item hero-gallery-item--5">
+            <img src="media/Photo 10.jpeg" alt="Production work" width="200" height="200" loading="lazy" />
+          </figure>
+        </div>
+        <span class="hero-badge" id="heroBadge" aria-live="polite">
+          <span class="hero-badge-text" id="heroBadgeText">Senior Manager</span>
+        </span>
+        <div class="hero-ctas">
+          <button type="button" class="hero-cta-primary" id="heroCtaConnect">
+            Let's Connect
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button type="button" class="hero-cta-ghost" id="heroCtaEmail" title="Copy email">
+            <span class="hero-cta-email-text">connormalarkeymedia@gmail.com</span>
+            <svg class="hero-cta-copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- What I do — Lead into work -->
+    <section class="section work-section" id="work" aria-labelledby="work-heading">
+      <div class="container">
+        <h2 id="work-heading" class="work-headline">What I do</h2>
+        <p class="work-lead">I lead production teams, build the systems that keep them running, and get in the field to capture immersive content myself. On the ops side I design and automate workflows — cutting the repetitive, solving the hard problems, and making sure clients get a great experience every time. On the R&amp;D side I'm pushing into AI, 360, and CGI to find out what immersive media can actually become.</p>
+        <div class="work-pillars">
+          <span class="work-pillar">Field Production</span>
+          <span class="work-pillar-sep" aria-hidden="true">·</span>
+          <span class="work-pillar">Workflow Automation</span>
+          <span class="work-pillar-sep" aria-hidden="true">·</span>
+          <span class="work-pillar">Client Experience</span>
+          <span class="work-pillar-sep" aria-hidden="true">·</span>
+          <span class="work-pillar">AI &amp; R&amp;D</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section divider -->
+    <div class="section-divider--tri" aria-hidden="true">
+      <div class="section-divider--tri-line" style="background: rgb(91,155,213);"></div>
+      <div class="section-divider--tri-line" style="background: rgb(155,123,184);"></div>
+      <div class="section-divider--tri-line" style="background: rgb(77,184,168);"></div>
+    </div>
+
+    <!-- Projects — Bento Grid -->
+    <section class="section projects-section projects-section--bento" id="projects" aria-labelledby="projects-heading">
+      <div class="projects-starfield" id="projectsStarfield" aria-hidden="true"></div>
+      <div class="container">
+        <p class="section-label">Portfolio</p>
+        <h2 id="projects-heading" class="section-title section-title--wide">Projects</h2>
+        <div class="bento-grid" id="bentoGrid">
+          <article class="bento-card bento-card--partnership">
+            <a href="https://photographers.visitingmedia.com/" target="_blank" rel="noopener noreferrer" class="bento-card-link">
+              <div class="bento-card-inner bento-card-inner--split">
+                <div class="bento-split-text">
+                  <svg class="bento-camera-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                  <h3 class="bento-title">Content Creator Hub</h3>
+                  <p class="bento-sub">For photographers and creators</p>
+                  <span class="bento-card-cta">View project →</span>
+                </div>
+                <div class="bento-split-photo">
+                  <img src="media/Content Creator Hub Photo.jpg" alt="Content Creator Hub" class="bento-hub-photo" />
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="bento-card bento-card--innovations">
+            <a href="https://visitingmedia.github.io/Product-Studio-Offerings/index.html" target="_blank" rel="noopener noreferrer" class="bento-card-link">
+              <div class="bento-card-inner">
+                <div class="bento-sales" aria-hidden="true">
+                  <div class="bento-sales-chart">
+                    <div class="bento-sales-bar bento-sales-bar--1"></div>
+                    <div class="bento-sales-bar bento-sales-bar--2"></div>
+                    <div class="bento-sales-bar bento-sales-bar--3"></div>
+                    <div class="bento-sales-bar bento-sales-bar--4"></div>
+                  </div>
+                  <span class="bento-sales-dollar">$</span>
+                </div>
+                <h3 class="bento-title">Product Promotional Pages</h3>
+                <p class="bento-sub">High-impact landing pages for product launches</p>
+                <span class="bento-card-cta">View project →</span>
+              </div>
+            </a>
+          </article>
+          <article class="bento-card bento-card--globe">
+            <a href="https://interactive-map-tool.lovable.app/" target="_blank" rel="noopener noreferrer" class="bento-card-link">
+              <div class="bento-card-inner">
+                <div class="bento-map" aria-hidden="true">
+                  <div class="bento-map-grid"></div>
+                  <span class="bento-map-pin bento-map-pin--a" aria-hidden="true"></span>
+                  <span class="bento-map-pin bento-map-pin--b" aria-hidden="true"></span>
+                  <span class="bento-map-pin bento-map-pin--c" aria-hidden="true"></span>
+                </div>
+                <h3 class="bento-title">Interactive Map Builder</h3>
+                <p class="bento-sub">Remote-first collaboration</p>
+                <span class="bento-card-cta">View project →</span>
+              </div>
+            </a>
+          </article>
+          <article class="bento-card bento-card--cta">
+            <a href="https://visitingmedia.github.io/360-panoramic-viewer/" target="_blank" rel="noopener noreferrer" class="bento-card-link">
+              <div class="bento-card-inner">
+                <div class="bento-360" aria-hidden="true">
+                  <div class="bento-360-ring bento-360-ring--outer"></div>
+                  <div class="bento-360-ring bento-360-ring--mid"></div>
+                  <div class="bento-360-sweep"></div>
+                  <div class="bento-360-center"></div>
+                </div>
+                <h3 class="bento-title">360 Viewer</h3>
+                <p class="bento-sub">Immersive panoramic experiences</p>
+                <span class="bento-card-cta">View project →</span>
+              </div>
+            </a>
+          </article>
+          <article class="bento-card bento-card--product">
+            <a href="https://interactive-room-builder.lovable.app/" target="_blank" rel="noopener noreferrer" class="bento-card-link">
+              <div class="bento-card-inner">
+                <div class="bento-floorplan" aria-hidden="true">
+                  <div class="bento-fp-glow"></div>
+                  <div class="bento-fp-item bento-fp-item--sofa"></div>
+                  <div class="bento-fp-item bento-fp-item--table"></div>
+                  <div class="bento-fp-item bento-fp-item--bed"></div>
+                  <div class="bento-fp-cursor"></div>
+                </div>
+                <h3 class="bento-title">Interactive Room Planner</h3>
+                <p class="bento-sub">Custom systems and interfaces</p>
+                <span class="bento-card-cta">View project →</span>
+              </div>
+            </a>
+          </article>
+        </div>
+        <div class="projects-more-wrap">
+          <div class="projects-more-dropdown-wrap">
+            <button type="button" class="projects-more-btn" id="projectsMoreBtn" aria-expanded="false" aria-haspopup="listbox" aria-controls="projectsMoreList" aria-label="See more projects">
+              See more
+              <svg class="projects-more-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <ul class="projects-more-dropdown" id="projectsMoreList" role="listbox" aria-label="Other projects" hidden>
+              <li><a href="https://visitingmedia.github.io/aerial-pin-generator/" target="_blank" rel="noopener noreferrer" class="projects-more-dropdown-link">Aerial Pin Generator</a></li>
+              <li><a href="https://visitingmedia.github.io/product-studio-link-tool/" target="_blank" rel="noopener noreferrer" class="projects-more-dropdown-link">Link Parameter Tool</a></li>
+              <li><a href="https://visitingmedia.github.io/image-compressor/" target="_blank" rel="noopener noreferrer" class="projects-more-dropdown-link">Image Compressor</a></li>
+              <li><a href="https://visitingmedia.github.io/pattern-generator/" target="_blank" rel="noopener noreferrer" class="projects-more-dropdown-link">Pattern Generator</a></li>
+              <li><a href="https://visitingmedia.github.io/tour-button-generator/" target="_blank" rel="noopener noreferrer" class="projects-more-dropdown-link">Graphic Button Generator</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery — Media showcases -->
+    <section class="section gallery-section" id="gallery" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="gallery-header">
+          <p class="section-label">Media Showcases</p>
+          <h2 id="gallery-heading" class="section-title section-title--wide">Gallery</h2>
+        </div>
+        <p class="gallery-intro">Examples of the immersive content bundles I worked on at Visiting Media — combining 360° photo, video, 3D models, and CGI into a single deliverable for hotels and resorts.</p>
+
+        <div class="gallery-subsection" id="galleryImmersive">
+          <h3 class="gallery-subsection-title">Immersive Tours</h3>
+          <div class="gallery-carousel" id="toursCarousel">
+            <button type="button" class="gallery-carousel-btn gallery-carousel-btn--prev" id="toursCarouselPrev" aria-label="Previous tours">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="gallery-carousel-viewport">
+              <div class="gallery-carousel-track" id="toursCarouselTrack">
+            <a href="https://visitme.co/OdDoNI" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/San Francisco Marriott Marquis - Photo.png" alt="San Francisco Marriott Marquis" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">San Francisco Marriott Marquis</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/Se8EHl" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/Four seasons bora bora.jpg" alt="Four Seasons Resort Bora Bora" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">Four Seasons Resort Bora Bora</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/NsfUfw" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/Rosewood São Paulo - Photo.jpg" alt="Rosewood São Paulo" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">Rosewood São Paulo</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/bmNBV6" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/Montage Big Sky - Photo.png" alt="Montage Big Sky" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">Montage Big Sky</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/us65Ju" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/The Langham Huntington, Pasadena, Los Angeles - Photo.jpg" alt="The Langham Huntington, Pasadena" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">The Langham Huntington, Pasadena, Los Angeles</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/YML5Jm" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/The Ritz-Carlton, Portland - Photo.png" alt="The Ritz-Carlton, Portland" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">The Ritz-Carlton, Portland</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/mmSTLg" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/Hotel del Coronado Curio Collection by Hilton - Photo.png" alt="Hotel del Coronado Curio Collection by Hilton" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">Hotel del Coronado Curio Collection by Hilton</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/0HIpn8" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/Park Hyatt Kuala Lumpur - New Photo.png" alt="Park Hyatt Kuala Lumpur" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">Park Hyatt Kuala Lumpur</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+            <a href="https://visitme.co/YW25w7" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb gallery-carousel-card">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/immersive tour photos/Andaz Miami Beach - Photo.jpg" alt="Andaz Miami Beach" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Tour</span>
+                <h4 class="gallery-card-title">Andaz Miami Beach</h4>
+                <span class="gallery-card-cta">View tour →</span>
+              </span>
+            </a>
+              </div>
+            </div>
+            <button type="button" class="gallery-carousel-btn gallery-carousel-btn--next" id="toursCarouselNext" aria-label="Next tours">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <div class="gallery-carousel-controls">
+              <span class="gallery-carousel-dots" id="toursCarouselDots" aria-label="Carousel page"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-subsection" id="galleryVideo">
+          <h3 class="gallery-subsection-title">Personal Video Projects</h3>
+          <div class="gallery-grid">
+            <a href="https://www.youtube.com/watch?v=MCtb3PX1SaA" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="https://img.youtube.com/vi/MCtb3PX1SaA/hqdefault.jpg" alt="360 Video Reverie de Giverny" class="gallery-card-thumb" width="400" height="250" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">360 Video Reverie de Giverny</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=THJvouPI6D8" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="https://img.youtube.com/vi/THJvouPI6D8/hqdefault.jpg" alt="Catharsis" class="gallery-card-thumb" width="400" height="250" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">Catharsis</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=Spzi2V-OgWI" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="https://img.youtube.com/vi/Spzi2V-OgWI/hqdefault.jpg" alt="Catharsis Behind the Scenes" class="gallery-card-thumb" width="400" height="250" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">Catharsis Behind the Scenes</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=EOmY1egFtd4" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="https://img.youtube.com/vi/EOmY1egFtd4/hqdefault.jpg" alt="Paper Thin" class="gallery-card-thumb" width="400" height="250" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">Paper Thin</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=nxXhfDe_OaA" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="https://img.youtube.com/vi/nxXhfDe_OaA/hqdefault.jpg" alt="No Grandkids" class="gallery-card-thumb" width="400" height="250" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">No Grandkids</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=cX7U8torPNc" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="https://img.youtube.com/vi/cX7U8torPNc/hqdefault.jpg" alt="Era of Ego Fundraiser" class="gallery-card-thumb" width="400" height="250" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">Era of Ego Fundraiser</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://vimeo.com/329164807?share=copy&fl=cl&fe=ci" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap gallery-card-thumb-wrap--one-story">
+                <img src="media/one story photo.png" alt="One Story" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">One Story</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+            <a href="https://vimeo.com/362936909?share=copy&fl=cl&fe=ci" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--thumb">
+              <span class="gallery-card-thumb-wrap">
+                <img src="media/haven photo.png" alt="Haven" class="gallery-card-thumb" width="400" height="250" loading="lazy" />
+              </span>
+              <span class="gallery-card-body">
+                <span class="gallery-card-type">Video</span>
+                <h4 class="gallery-card-title">Haven</h4>
+                <span class="gallery-card-cta">Watch →</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <dialog class="contact-modal" id="contactModal" aria-labelledby="contactModalTitle" aria-describedby="contactModalDesc">
+      <div class="contact-modal-inner">
+        <button type="button" class="contact-modal-close" id="contactModalClose" aria-label="Close contact form">×</button>
+        <h2 id="contactModalTitle" class="contact-modal-title">Get in touch</h2>
+        <p id="contactModalDesc" class="contact-modal-desc">Send a message and I’ll get back to you.</p>
+        <!-- Replace mkokjeqo with your Formspree form ID (formspree.io). Set the form's email to connormalarkeymedia@gmail.com. -->
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mkokjeqo" method="POST" novalidate>
+          <div class="contact-form-row">
+            <div class="contact-form-field">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" required placeholder="Your name" autocomplete="name" />
+            </div>
+            <div class="contact-form-field">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" required placeholder="you@example.com" autocomplete="email" />
+            </div>
+          </div>
+          <div class="contact-form-field">
+          <label for="contact-subject">Subject <span class="optional">(optional)</span></label>
+          <input type="text" id="contact-subject" name="_subject" placeholder="e.g. Project inquiry" />
+          </div>
+          <div class="contact-form-field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" required placeholder="How can I help?" rows="3"></textarea>
+          </div>
+          <div class="contact-form-status" id="contactFormStatus" aria-live="polite"></div>
+          <button type="submit" class="contact-form-submit" id="contactFormSubmit">Send message</button>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- Personal Projects Modal (secret from gallery) -->
+    <dialog class="personal-projects-modal" id="personalProjectsModal" aria-labelledby="personalProjectsTitle" aria-describedby="personalProjectsDesc">
+      <div class="personal-projects-modal-inner">
+        <button type="button" class="personal-projects-modal-close" id="personalProjectsModalClose" aria-label="Close">×</button>
+        <h2 id="personalProjectsTitle" class="personal-projects-modal-title">Connor's Personal Projects</h2>
+        <p id="personalProjectsDesc" class="personal-projects-modal-desc">Video and 360 work outside of client showcases.</p>
+        <ul class="personal-projects-list">
+          <li><a href="https://www.youtube.com/watch?v=MCtb3PX1SaA" target="_blank" rel="noopener noreferrer">360 Video Reverie de Giverny</a></li>
+          <li><a href="https://www.youtube.com/watch?v=THJvouPI6D8" target="_blank" rel="noopener noreferrer">Catharsis</a></li>
+          <li><a href="https://www.youtube.com/watch?v=Spzi2V-OgWI" target="_blank" rel="noopener noreferrer">Catharsis Behind the Scenes</a></li>
+          <li><a href="https://www.youtube.com/watch?v=EOmY1egFtd4" target="_blank" rel="noopener noreferrer">Paper Thin</a></li>
+          <li><a href="https://www.youtube.com/watch?v=nxXhfDe_OaA" target="_blank" rel="noopener noreferrer">No Grandkids</a></li>
+          <li><a href="https://www.youtube.com/watch?v=cX7U8torPNc" target="_blank" rel="noopener noreferrer">Era of Ego Fundraiser</a></li>
+          <li><a href="https://vimeo.com/329164807?share=copy&fl=cl&fe=ci" target="_blank" rel="noopener noreferrer">One Story</a></li>
+          <li><a href="https://vimeo.com/362936909?share=copy&fl=cl&fe=ci" target="_blank" rel="noopener noreferrer">Haven</a></li>
+        </ul>
+      </div>
+    </dialog>
+
+    <!-- Experience (work history + tools) -->
+    <section class="section experience-section" id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <p class="section-label">Background & Skills</p>
+        <h2 id="experience-heading" class="section-title section-title--wide">Experience</h2>
+        <p class="experience-lead">Work history and the tools I use day to day.</p>
+        <div class="experience-list">
+          <article class="experience-card">
+            <div class="experience-header">
+              <h3 class="experience-role">Senior Manager, Product Studio</h3>
+              <span class="experience-dates">July 2021 — Present</span>
+            </div>
+            <p class="experience-company">Visiting Media</p>
+            <p class="experience-desc">Managing production teams and leading day-to-day operations. Building internal systems and software that power our workflows—expanding the tools we use, the media formats we support, and the pipelines that get projects delivered. Using AI and automated workflows to accelerate development, remove bottlenecks, and turn ideas into scalable systems. Designing and managing AI-augmented tooling so both people and teams can work more effectively. Previously Lead Digital Asset Specialist (2022–2025) and Production Assistant (2021–2022).</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-header">
+              <h3 class="experience-role">Freelance Video Editor</h3>
+              <span class="experience-dates">January 2015 — April 2025</span>
+            </div>
+            <p class="experience-company">Freelance</p>
+            <p class="experience-desc">Video editing and multimedia production across a variety of projects and clients. Hands-on work in video and 360; built practical skills, learned to adapt quickly, and worked with diverse creative and technical workflows.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-header">
+              <h3 class="experience-role">Media Production Specialist</h3>
+              <span class="experience-dates">October 2020 — August 2021</span>
+            </div>
+            <p class="experience-company">The Hive · Boulder, Colorado</p>
+            <p class="experience-desc">Media production and content creation in a collaborative studio environment.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-header">
+              <h3 class="experience-role">Media Producer</h3>
+              <span class="experience-dates">April 2020 — August 2021</span>
+            </div>
+            <p class="experience-company">IRC · Kansas, United States</p>
+            <p class="experience-desc">Producing media content and supporting production workflows for remote and on-location projects.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-header">
+              <h3 class="experience-role">Teaching Assistant · Research Assistant</h3>
+              <span class="experience-dates">August 2019 — May 2020</span>
+            </div>
+            <p class="experience-company">Towson University · Towson, Maryland</p>
+            <p class="experience-desc">Teaching Assistant (Jan–May 2020) and Research Assistant (Aug 2019–May 2020). Supported film and video production courses and research in cinematography and media.</p>
+          </article>
+        </div>
+        <div class="experience-education">
+          <h3 class="experience-education-title">Education</h3>
+          <div class="experience-education-item experience-education-item--with-logo">
+            <img src="media/towson-university-logo.png" alt="Towson University" class="experience-education-logo" width="120" height="120" loading="lazy" />
+            <p><strong>Towson University</strong> — Bachelor of Science, Electronic Media and Film Production (2016 – 2020)</p>
+          </div>
+        </div>
+
+        <!-- The Magic Behind — Skillset -->
+        <div class="magic-behind" id="tools-heading">
+          <p class="magic-behind-label">MY SKILLSET</p>
+          <div class="magic-behind-header">
+            <div class="magic-behind-shape" aria-hidden="true"></div>
+            <h2 class="magic-behind-title">
+              The <em class="magic-behind-accent">Magic</em> Behind <em class="magic-behind-accent">the Work</em>
+            </h2>
+          </div>
+          <div class="skill-cloud">
+            <div class="skill-pill-item" title="Adobe Suite"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobe.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Adobe Suite</span></div>
+            <div class="skill-pill-item" title="Premiere Pro"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobepremierepro.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Premiere Pro</span></div>
+            <div class="skill-pill-item" title="After Effects"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobeaftereffects.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>After Effects</span></div>
+            <div class="skill-pill-item" title="Photoshop"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobephotoshop.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Photoshop</span></div>
+            <div class="skill-pill-item" title="Illustrator"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobeillustrator.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Illustrator</span></div>
+            <div class="skill-pill-item" title="Lightroom"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobelightroom.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Light Room</span></div>
+            <div class="skill-pill-item" title="Acrobat"><img src="https://cdn.jsdelivr.net/npm/simple-icons@9.19.0/icons/adobe.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Acrobat</span></div>
+            <div class="skill-pill-item" title="Matterport"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/matterport.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Matterport</span></div>
+            <div class="skill-pill-item" title="Vimeo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/vimeo.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Vimeo</span></div>
+            <div class="skill-pill-item" title="Capcut"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/capcut.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Capcut</span></div>
+            <div class="skill-pill-item" title="Canva"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/canva.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Canva</span></div>
+            <div class="skill-pill-item skill-pill-item--no-logo" title="Pantour Pro"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="" loading="lazy" /><span>Pantour Pro</span></div>
+            <div class="skill-pill-item" title="Kuula"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/kuula.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Kuula</span></div>
+            <div class="skill-pill-item" title="GoThru"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/visitme.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>GoThru</span></div>
+            <div class="skill-pill-item" title="Frame.IO"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/frameio.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Frame.IO</span></div>
+            <div class="skill-pill-item" title="Artlist"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/envato.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Artlist</span></div>
+            <div class="skill-pill-item" title="Sontradr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/spotify.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Sontradr</span></div>
+            <div class="skill-pill-item" title="OBS Studio"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/obsstudio.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>OBS Studio</span></div>
+            <div class="skill-pill-item" title="PTGui"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/panorama.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>PTGui</span></div>
+            <div class="skill-pill-item" title="Handbrake"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/ffmpeg.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Handbrake</span></div>
+            <div class="skill-pill-item" title="Motionarray"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/envato.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Motionarray</span></div>
+            <div class="skill-pill-item" title="Google Earth Studio"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/googleearth.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Google Earth Studio</span></div>
+            <div class="skill-pill-item" title="Cursor"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/cursor.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Cursor</span></div>
+            <div class="skill-pill-item" title="Claude"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/anthropic.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Claude</span></div>
+            <div class="skill-pill-item" title="Gemini"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/googlegemini.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Gemini</span></div>
+            <div class="skill-pill-item" title="Co-Pilot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/githubcopilot.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Co-Pilot</span></div>
+            <div class="skill-pill-item" title="ChatGPT"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/openai.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>ChatGPT</span></div>
+            <div class="skill-pill-item" title="Lovable"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/replit.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Lovable</span></div>
+            <div class="skill-pill-item" title="Base44"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/glitch.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Base44</span></div>
+            <div class="skill-pill-item" title="Vercel"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/vercel.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Vercel</span></div>
+            <div class="skill-pill-item" title="Eleven Labs"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/elevenlabs.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Eleven Labs</span></div>
+            <div class="skill-pill-item" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/github.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>GitHub</span></div>
+            <div class="skill-pill-item" title="Google Office Suite"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/google.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Google Office Suite</span></div>
+            <div class="skill-pill-item" title="Salesforce"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/salesforce.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Salesforce</span></div>
+            <div class="skill-pill-item" title="SalesHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/hubspot.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>SalesHub</span></div>
+            <div class="skill-pill-item" title="Asana"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/asana.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Asana</span></div>
+            <div class="skill-pill-item" title="Lattice"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/lattice.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Lattice</span></div>
+            <div class="skill-pill-item" title="Expensify"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/expensify.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Expensify</span></div>
+            <div class="skill-pill-item" title="Google Drive"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/googledrive.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Google Drive</span></div>
+            <div class="skill-pill-item" title="Google Service Console"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/googlecloud.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Google Service Console</span></div>
+            <div class="skill-pill-item" title="Cloudberry"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/backblaze.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Cloudberry</span></div>
+            <div class="skill-pill-item" title="HTML"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/html5.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>HTML</span></div>
+            <div class="skill-pill-item" title="CSS"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/css3.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>CSS</span></div>
+            <div class="skill-pill-item" title="JavaScript"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/javascript.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>JavaScript</span></div>
+            <div class="skill-pill-item" title="Claude Code"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/anthropic.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Claude Code</span></div>
+            <div class="skill-pill-item" title="Claude CoWork"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/anthropic.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Claude CoWork</span></div>
+            <div class="skill-pill-item" title="Supabase"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/supabase.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>Supabase</span></div>
+            <div class="skill-pill-item" title="N8N"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/n8n.svg" alt="" loading="lazy" onerror="this.parentElement.classList.add('skill-pill-item--no-logo')" /><span>N8N</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section divider -->
+    <div class="section-divider--tri" aria-hidden="true">
+      <div class="section-divider--tri-line" style="background: rgb(91,155,213);"></div>
+      <div class="section-divider--tri-line" style="background: rgb(155,123,184);"></div>
+      <div class="section-divider--tri-line" style="background: rgb(77,184,168);"></div>
+    </div>
+
+    <!-- About Me — Bio + timeline (further down) -->
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <p class="section-label">Who I Am</p>
+        <h2 id="about-heading" class="section-title">About Me</h2>
+        <div class="about-collage">
+          <figure class="about-collage-item about-collage-item--lead">
+            <img src="media/Photo 16.png" alt="Connor Malarkey" width="400" height="400" />
+            <figcaption class="about-photo-caption">Sandboarding at Sand Dunes National Park</figcaption>
+          </figure>
+          <figure class="about-collage-item">
+            <img src="media/Photo 9.jpeg" alt="Production work" width="400" height="300" />
+            <figcaption class="about-photo-caption">Grandma and I at the Beach :)</figcaption>
+          </figure>
+          <figure class="about-collage-item">
+            <img src="media/Photo 10.jpeg" alt="Team collaboration" width="400" height="300" />
+            <figcaption class="about-photo-caption">Me as a cowboy</figcaption>
+          </figure>
+          <figure class="about-collage-item">
+            <img src="media/cat.jpg" alt="My cat" width="400" height="300" />
+            <figcaption class="about-photo-caption">My Cat. Dripped out</figcaption>
+          </figure>
+          <figure class="about-collage-item">
+            <img src="media/snapshot1.jpg" alt="Creative work" width="400" height="300" />
+            <figcaption class="about-photo-caption">Creative work in progress.</figcaption>
+          </figure>
+          <figure class="about-collage-item">
+            <img src="media/Team Photo.jpeg" alt="Team" width="400" height="300" />
+            <figcaption class="about-photo-caption">Chicago Team Summit</figcaption>
+          </figure>
+          <figure class="about-collage-item about-collage-item--tall">
+            <img src="media/Photo 6.png" alt="Production work" width="400" height="300" />
+            <figcaption class="about-photo-caption">Work Trip to NYC</figcaption>
+          </figure>
+        </div>
+        <div class="about-bio-block">
+          <p class="about-bio">I grew up alongside technology. From video games and music to building computers and experimenting with every type of media I could get my hands on, creating and tinkering were always second nature to me. I started filming videos early on, which eventually led me to study media production at Towson University, where I discovered immersive media and became interested in how technology can shape the way people experience digital spaces.</p>
+          <p class="about-bio">Outside of school, I freelanced across a wide range of projects, picking up practical skills, learning how to adapt quickly, and understanding how creative work functions in real world environments. After graduating, I joined Visiting Media, where my role grew well beyond traditional production. Over time, I helped expand the software, the media formats we supported, and the systems that powered our workflows.</p>
+          <p class="about-bio about-bio-secondary">As AI moved from novelty to necessity, my focus evolved again. I stepped into building tools, designing automated workflows, and managing AI agents to accelerate development and remove bottlenecks. Today, I lead teams, streamline complex production pipelines, and use AI accelerated coding to turn ideas into scalable, usable systems. At the core of my work is a drive to connect creativity with structure, and to build tools that make both people and teams more effective.</p>
+        </div>
+        <div class="about-intro">
+        <h3 class="timeline-heading">My Journey</h3>
+        <div class="timeline" id="historyTimeline">
+          <div class="timeline-line" id="timelineLine" aria-hidden="true"></div>
+          <article class="timeline-item" data-year="2016">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">2016</span>
+              <h4 class="timeline-title">Marriotts Ridge High School</h4>
+              <p class="timeline-desc">Graduated from Marriotts Ridge High School.</p>
+            </div>
+            <div class="timeline-photo-wrap">
+              <img src="media/Graduation Photo.png" alt="Marriotts Ridge High School graduation" class="timeline-photo" width="160" height="160" loading="lazy" />
+            </div>
+          </article>
+          <article class="timeline-item" data-year="2020">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">2020</span>
+              <h4 class="timeline-title">Towson University</h4>
+              <p class="timeline-desc">Graduated from Towson University with a BS in Electronic Media and Film Production and a minor in Business Management.</p>
+            </div>
+            <div class="timeline-photo-wrap">
+              <img src="media/Photo 13.JPG" alt="Towson University" class="timeline-photo" width="160" height="160" loading="lazy" />
+            </div>
+          </article>
+          <article class="timeline-item" data-year="2021">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">2020 – 2022</span>
+              <h4 class="timeline-title">Freelance multimedia production</h4>
+              <p class="timeline-desc">Freelance multimedia production across a variety of projects and clients.</p>
+            </div>
+            <div class="timeline-photo-wrap"></div>
+          </article>
+          <article class="timeline-item" data-year="2022">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">2022</span>
+              <h4 class="timeline-title">Joined Visiting Media</h4>
+              <p class="timeline-desc">Joined Visiting Media.</p>
+            </div>
+            <div class="timeline-photo-wrap">
+              <img src="media/Joining_Visiting_Media.png" alt="Joining Visiting Media" class="timeline-photo" width="160" height="160" loading="lazy" />
+            </div>
+          </article>
+          <article class="timeline-item" data-year="2024">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">2024</span>
+              <h4 class="timeline-title">Promoted to Senior Manager</h4>
+              <p class="timeline-desc">Promoted to Senior Manager at Visiting Media.</p>
+            </div>
+            <div class="timeline-photo-wrap"></div>
+          </article>
+          <article class="timeline-item" data-year="2025">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">Present</span>
+              <h4 class="timeline-title">Leading teams & building systems</h4>
+              <p class="timeline-desc">Continuing to lead teams, build tools, and evolve production systems.</p>
+            </div>
+            <div class="timeline-photo-wrap">
+              <img src="media/Team Photo.jpeg" alt="Team" class="timeline-photo" width="160" height="160" loading="lazy" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="contact-inner">
+        <p class="section-label">Get in Touch</p>
+        <h2 id="contact-heading" class="contact-title section-title--wide">Let's Build Something</h2>
+        <p class="contact-subtitle">Media, tools, websites, building, AI consulting, media consulting. I'm here to help with anything and everything.</p>
+        <button type="button" class="contact-cta" id="contactSectionCta">Contact me</button>
+        <div class="contact-social">
+          <a href="https://www.linkedin.com/in/connor-malarkey-5b43571a8/" target="_blank" rel="noopener noreferrer" class="contact-social-link" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span>© 2025 Connor Malarkey. Built with intention.</span>
+      <span>Designed & Developed by Connor Malarkey</span>
+    </div>
+  </footer>
+
+  <script src="js/hero-network.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

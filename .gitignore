@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Claude Code
+.claude/
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs and temp
+*.log
+npm-debug.log*
+.npm
+.env
+.env.local
+.env.*.local
+
+# Optional: uncomment if you use a build step later
+# dist/
+# build/
