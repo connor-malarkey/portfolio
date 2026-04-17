@@ -1874,11 +1874,39 @@ button.nav-overlay-link {
   .bento-grid { grid-template-columns: 1fr; gap: var(--space-md); }
   .bento-card--partnership,
   .bento-card--innovations,
-  .bento-card--product { grid-column: 1; }
-  .bento-card--globe { grid-row: 3; }
-  .bento-card--cta { grid-row: 4; }
-  .bento-card--product { grid-row: 5; }
+  .bento-card--globe,
+  .bento-card--cta,
+  .bento-card--product { grid-column: 1; grid-row: auto; }
   .bento-card-inner { min-height: 160px; padding: var(--space-lg); }
+}
+
+/* Fade out decorative bento icons when viewport is too short to avoid overlap */
+.bento-sales,
+.bento-sales-dollar,
+.bento-map,
+.bento-360,
+.bento-floorplan,
+.bento-split-photo,
+.bento-camera-icon {
+  transition: opacity 0.25s ease;
+}
+@media (max-height: 650px) {
+  .bento-sales,
+  .bento-sales-dollar,
+  .bento-map,
+  .bento-360,
+  .bento-floorplan,
+  .bento-camera-icon {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .bento-split-photo {
+    flex: 0 0 0;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0;
+  }
 }
 
 /* Legacy project modal (kept for any future use) */
